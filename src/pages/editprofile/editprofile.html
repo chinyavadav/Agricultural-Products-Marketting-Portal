@@ -1,0 +1,63 @@
+<!--
+  Generated template for the SignupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>Edit Profile</ion-title>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form (ngSubmit)="editProfile()" [formGroup]="editprofileForm">
+      <ion-list no-lines>
+        <ion-list-header text-capitalize>Current Profile</ion-list-header>
+        <ion-item>
+          <ion-avatar item-left (click)="getPhoto()">
+            <img src="{{global.serverAddress}}account/avatars/{{ global.session.fldphoneno }}.jpg">
+          </ion-avatar>
+          <h2>0{{ global.session.fldphoneno }}</h2>
+          <p>{{ global.session.fldcompany }}</p>
+        </ion-item>
+        <ion-item-divider text-capitalize>Account Details</ion-item-divider>
+        <ion-item>
+          <ion-label floating>Company</ion-label>
+          <ion-input type="text" placeholder="Company" formControlName="company" [value]="global.session.fldcompany"></ion-input>
+        </ion-item>            
+        <ion-item>
+          <ion-label floating>First Name</ion-label>
+          <ion-input type="text" placeholder="First Name" formControlName="firstname" 
+          [value]="global.session.fldfirstname"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Last Name</ion-label>
+          <ion-input type="text" placeholder="Last Name" formControlName="lastname" [value]="global.session.fldlastname"></ion-input>
+        </ion-item>
+        <ion-item-divider text-capitalize>Contact Details</ion-item-divider>
+        <ion-item>
+          <ion-label floating>District</ion-label>
+          <ion-select formControlName="district">
+            <ion-option *ngFor="let district of districts" [value]="district" [selected]="district == global.session.flddistrict">{{ district }}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item-divider text-capitalize>Change Password</ion-item-divider>
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-input type="hidden" formControlName="phoneno" value="0{{global.session.fldphoneno}}"></ion-input>
+        <ion-input type="hidden" formControlName="form" value="editprofile"></ion-input>
+        <ion-item-divider></ion-item-divider>
+        <button ion-button block type="submit">Update Profile</button>      
+      </ion-list>      
+      
+    </form>
+  </ion-content>

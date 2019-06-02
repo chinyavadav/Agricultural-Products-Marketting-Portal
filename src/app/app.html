@@ -1,0 +1,63 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+      	Aggrigator
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+ 
+  <ion-content padding>
+    <ion-list *ngIf="global.loginState == 'Farmer'">
+    	<button menuClose ion-item detail-none>
+    		<ion-icon item-start name="home"></ion-icon> Home</button>
+    	<button menuClose ion-item detail-none (click)="openPage(0)">
+    		<ion-icon item-start name="leaf"></ion-icon> My Produce</button>
+      <button menuClose ion-item detail-none (click)="openPage(1)">
+        <ion-icon item-start name="cart"></ion-icon> Sales Orders</button>
+    	<ion-item-divider>
+  			Account
+		</ion-item-divider>
+    	<button menuClose ion-item detail-none (click)="openPage(2)">
+    		<ion-icon item-start name="contact"></ion-icon> Profile</button>
+    	<button menuClose ion-item detail-none (click)="openPage(3)">
+    		<ion-icon item-start name="cog"></ion-icon> Settings</button>
+    	<button menuClose ion-item detail-none (click)="logout()">
+    		<ion-icon item-start name="log-out"></ion-icon> Logout</button>
+		<!--ion-item menuClose detail-none>Close Menu</ion-item-->
+    </ion-list>
+    <ion-list *ngIf="global.loginState == 'Buyer'">
+      <button menuClose ion-item detail-none>
+        <ion-icon item-start name="home"></ion-icon> Home</button>
+      <button menuClose ion-item detail-none (click)="openPage(1)">
+        <ion-icon item-start name="cart"></ion-icon> Purchase Orders</button>
+      <ion-item-divider>
+        Account
+    </ion-item-divider>
+      <button menuClose ion-item detail-none (click)="openPage(2)">
+        <ion-icon item-start name="contact"></ion-icon> Profile</button>
+      <button menuClose ion-item detail-none (click)="openPage(3)">
+        <ion-icon item-start name="cog"></ion-icon> Settings</button>
+      <button menuClose ion-item detail-none (click)="logout()">
+        <ion-icon item-start name="log-out"></ion-icon> Logout</button>
+    <!--ion-item menuClose detail-none>Close Menu</ion-item-->
+    </ion-list>
+    <ion-list *ngIf="global.loginState == 'Login'">
+      <button menuClose ion-item detail-none (click)="openPage(3)">
+        <ion-icon item-start name="cog"></ion-icon> Settings</button>
+    </ion-list>
+
+   </ion-content>
+   	<ion-footer padding>
+  		<ion-toolbar text-center>
+    		<ion-title>
+    			<b>Powered by</b><br/>
+          <small>Agricultural Marketing Authority<br>App v.1.0.1 </small>			
+    		</ion-title>
+        <ion-label>Developed by <b>P. Makuyana</b></ion-label>    		
+  		</ion-toolbar>
+	</ion-footer>
+  </ion-menu>
+ 
+<!-- main navigation -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

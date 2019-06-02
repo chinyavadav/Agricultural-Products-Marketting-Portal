@@ -1,0 +1,60 @@
+<!--
+  Generated template for the orderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title *ngIf="global.loginState == 'Farmer'">
+      Sales Orders
+    </ion-title>
+    <ion-title *ngIf="global.loginState == 'Buyer'">
+      Purchase Orders
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding  *ngFor="let order of orders" #item>
+      <ion-item>
+        <ion-avatar item-left (click)="show(order.avatar_phone)">
+          <img src="{{ order.fldavatar }}">
+        </ion-avatar>
+        <h2>{{ order.fldunits }}{{order.fldunit }} {{ order.fldproduct }}</h2>
+        <p>at {{ order.fldcost/100 | currency: '$':2 }}/{{order.fldunit}}</p>
+        <p>{{order.fldtimestamp | relativeTime }}</p>
+        <button ion-button outline item-end *ngIf="order.fldcomplete=='Approved'" color="secondary">{{ order.fldcomplete }}</button>
+        <button ion-button outline item-end *ngIf="order.fldcomplete=='Denied'" color="danger">{{ order.fldcomplete }}</button>
+        <button ion-button outline item-end *ngIf="order.fldcomplete=='Pending'" color="primary">{{ order.fldcomplete }}</button>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button color="danger" *ngIf="global.loginState == 'Buyer'" (click)="delete(item,order.fldorderid,'buyer')">
+          <ion-icon name="close"></ion-icon>
+          Cancel
+        </button>
+        <button ion-button color="secondary" *ngIf="global.loginState == 'Farmer' && order.fldcomplete!='Approved'" (click)="delete(item,order.fldorderid,'approve')">
+          <ion-icon name="checkmark"></ion-icon>
+          Approve
+        </button>
+        <button ion-button color="danger" *ngIf="global.loginState == 'Farmer'" (click)="delete(item,order.fldorderid,'farmer')">
+          <ion-icon name="trash"></ion-icon>
+          Deny
+        </button>
+      </ion-item-options>
+      <ion-item-options side="left"><!--(ionSwipe)=""-->
+        <button ion-button color="secondary" (click)="call(item,order.fldphoneno_farmer,order.fldphoneno_buyer)">
+          <ion-icon name="call"></ion-icon>
+          Call
+        </button>
+        <button ion-button outline color="secondary" (click)="chat(item,order.fldphoneno_farmer,order.fldphoneno_buyer)">
+          <ion-icon name="chatbubbles"></ion-icon>
+          Chat
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

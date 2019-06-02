@@ -1,0 +1,37 @@
+<!--
+  Generated template for the SignupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>Profile</ion-title>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card text-center>
+    <img src="{{ global.serverAddress }}account/avatars/{{ account.fldphoneno }}.jpg">
+    <ion-card-content>
+      <ion-card-title>
+        {{ account.fldfirstname }} {{ account.fldlastname }}
+      </ion-card-title>
+      <ion-card-title>
+        <ion-icon item-start name="briefcase"></ion-icon><br/>{{ account.fldcompany }} [{{ account.fldtype }}]
+      </ion-card-title>
+      <p>
+        <ion-icon item-start name="call"></ion-icon><br/>0{{ account.fldphoneno }}
+      </p>
+      <p>
+        <ion-icon item-start name="home"></ion-icon><br/>{{ account.flddistrict }}
+      </p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

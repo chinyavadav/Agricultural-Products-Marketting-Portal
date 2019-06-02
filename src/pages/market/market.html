@@ -1,0 +1,13 @@
+<ion-header>
+	<ion-toolbar no-border-top color="secondary">
+		<ion-searchbar showCancelButton autocomplete="on" color="danger" (ionInput)="filterProducts($event)" placeholder="Filter Products"></ion-searchbar>
+	</ion-toolbar>
+</ion-header>
+<ion-content class="card-background-page">
+	<ion-card *ngFor="let product of products" (click)="pushProduct(product.fldproduct)">
+		<img src="{{ global.serverAddress }}api/avatars/{{ product.fldavatar }}"/>
+		<div class="card-title">{{ product.fldproduct }}</div>
+		<div *ngIf="global.loginState=='Farmer'" class="card-subtitle">{{ (product.flddemand/total)*100 | number:'1.0-0' }}% Demand</div>
+		<div *ngIf="global.loginState=='Buyer'" class="card-subtitle">{{ product.fldlisting }} Listings</div>
+	</ion-card>
+</ion-content>

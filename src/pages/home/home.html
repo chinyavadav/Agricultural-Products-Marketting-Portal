@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar color="secondary">
+  	<ion-title>Aggrigator [{{ global.loginState }}]</ion-title>
+  	<ion-buttons start>
+    	<button ion-button menuToggle>
+      		<ion-icon name="menu"></ion-icon>
+    	</button>
+    </ion-buttons>    
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+	<ion-tabs tabOrientation="top"  tab  tabsLayout="icon-start" color="secondary">
+		<ion-tab tabIcon="leaf" tabTitle="Market" [root]="marketPage"></ion-tab>
+		<ion-tab tabIcon="chatbubbles" tabTitle="Chats" [root]="chatsPage"></ion-tab>
+	</ion-tabs>
+</ion-content>

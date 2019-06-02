@@ -1,0 +1,58 @@
+<!--
+  Generated template for the OrderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="locate()">
+        <ion-icon name="locate"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="chat(product.supplier)">
+        <ion-icon name="chatbubbles"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="call(product.fldphoneno)">
+        <ion-icon name="call"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Order [{{ product.fldproduct }}]</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>  
+  <ion-list>
+    <ion-list-header text-capitalize>Supplier Details</ion-list-header>
+    <ion-item (click)="profile(product.supplier.fldphoneno)">
+      <ion-avatar item-left>
+        <img src="{{ product.fldavatar }}">
+      </ion-avatar>
+      <h2>{{ product.supplier.fldcompany }}</h2>
+      <p>{{ product.supplier.fldfirstname }} {{ product.supplier.fldlastname }}</p>
+    </ion-item>
+    <ion-item-divider text-capitalize>Product Description</ion-item-divider>
+    <ion-item>
+      Product
+      <button ion-button outline item-end>
+        {{ product.fldproduct }}</button>
+    </ion-item>
+    <ion-item>
+      Cost/Unit
+      <button ion-button outline item-end>
+        {{ product.fldcost/100 | currency: "$": 2}}/{{ product.fldunit }}</button>
+    </ion-item>
+    <form (ngSubmit)="order()" [formGroup]="orderForm" *ngIf="global.loginState == 'Buyer'">
+      <ion-item-divider  text-capitalize>Order Specifications</ion-item-divider>
+      <ion-item>
+        <ion-input text-center placeholder="Quantity" type="number" [(ngModel)]="qty" min="1" formControlName="quantity">1</ion-input>
+      </ion-item>
+      <ion-item>
+        <h1 text-center>Total: {{ (qty*product.fldcost)/100 | currency: "$": 2 }}</h1>
+      </ion-item>    
+      <button style="margin-top: 15px;height: 35px;font-size: 14px;background: #10ABF4;" ion-button  block  type="submit">Complete Order</button>
+    </form>
+  </ion-list>
+</ion-content>

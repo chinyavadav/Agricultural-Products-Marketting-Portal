@@ -1,0 +1,51 @@
+<!--
+  Generated template for the AddPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>Add Produce</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+ 
+<ion-list no-lines>
+ 
+    <form [formGroup]="addProduceForm" (ngSubmit)="addProduce()">
+ 
+        <ion-item>
+            <ion-label floating>Produce Name</ion-label>
+            <ion-select formControlName="name">
+              <ion-option *ngFor="let product of products" [value]="product.fldproduct">{{ product.fldproduct }}</ion-option>
+            </ion-select>
+        </ion-item>
+ 
+        <ion-item>
+            <ion-label floating>Cost ($/Unit)</ion-label>
+            <ion-input formControlName="cost" type="number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Unit</ion-label>
+            <ion-input formControlName="unit" type="text"></ion-input>
+        </ion-item>
+ 
+        <ion-item>
+            <ion-label floating>Comment</ion-label>
+            <ion-textarea formControlName="comment"></ion-textarea>
+        </ion-item>
+        <ion-input formControlName="phoneno" type="hidden" [value]="global.session.fldphoneno"></ion-input>
+        <ion-item>
+          <button ion-button  block  type="submit">Add Produce</button>
+        </ion-item>
+    </form>
+ 
+</ion-list>
+</ion-content>
